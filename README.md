@@ -13,5 +13,5 @@ that only has a short season (which might be preferred over others during this s
 
 
 ## TODOs for usage
-- create a telegram bot, and copy the API token into a token.txt 
+- create a telegram bot, and copy the API token and message_id into token.txt (change name of token.txt.default) 
 - 
