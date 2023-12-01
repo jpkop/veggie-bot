@@ -12,6 +12,7 @@ that only has a short season (which might be preferred over others during this s
 3. An API Call for a Telegram bot that sends a formatted list of vegs based on the choice list as a telegram message
 
 
+![img.png](img.png)
+
 ## TODOs for usage
-- create a telegram bot, and copy the API token and message_id into token.txt (change name of token.txt.default) 
-- 
+- create a telegram bot, and copy the API token and message_id into token.txt (change name of existing token.txt.default) 
