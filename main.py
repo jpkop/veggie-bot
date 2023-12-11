@@ -130,24 +130,27 @@ def sendMessage(token, chatId, messageToSend):
         message = requests.post(url, params=params)
         print("message response: ", message, message.json())
 
+def main():
+    absolutepath = os.path.dirname(__file__)
+    tokenfilename = "token.txt"
+    fullpath = os.path.join(absolutepath, tokenfilename)
 
-absolutepath = os.path.dirname(__file__)
-tokenfilename = "token.txt"
-fullpath = os.path.join(absolutepath, tokenfilename)
+    # get the telegram bot token and chatId from file
+    with open(fullpath) as file:
+        fileInput = file.read()
+    split = fileInput.split('"')
+    token = split[3]
+    chatId = split[7]
+    print("Token: " + token + ", chatId: " + chatId)
 
-# get the telegram bot token and chatId from file
-with open(fullpath) as file:
-    fileInput = file.read()
-split = fileInput.split('"')
-token = split[3]
-chatId = split[7]
-print("Token: " + token + ", chatId: " + chatId)
+    # fetch data from database which has season in the current month
+    data = fetchData(getCurrentMonth())
+    # create choice of veggies
+    vegList = createVegList(data)
+    # create message based on choice
+    messageToSend = createMessage(vegList)
+    # send the message as the telegram bot
+    sendMessage(token, chatId, messageToSend)
 
-# fetch data from database which has season in the current month
-data = fetchData(getCurrentMonth())
-# create choice of veggies
-vegList = createVegList(data)
-# create message based on choice
-messageToSend = createMessage(vegList)
-# send the message as the telegram bot
-sendMessage(token, chatId, messageToSend)
+if __name__ == '__main__':
+    main()
